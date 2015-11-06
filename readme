@@ -1,0 +1,88 @@
+功能：
+打开BMP文件 显示指定像素点的灰度 保存 彩色图像转灰度
+几何空间变换 镜像 平移 剪切 旋转 缩放（临近 双线性）
+空间滤波 模糊与锐化 
+直方图 均衡化
+频域滤波 DFT DCT IDFT IDCT 显示频谱图
+颜色直方图搜索
+
+工程结构：
+
+LightImage
+    |-Modules
+    |   |-Core Data Struct
+    |   |-IO
+    |   |-Color Space
+    |   |-Filter
+    |   |-Geometry Transform
+    |   |-Histogram
+    |   |-Frequency Domain Transform
+    |   |-Feture Extract
+    |-Include
+    |-App
+    
+Scalar Data Type
+    
+    LI_U32
+    |  | |---Bit Width, 8 16 32 64
+    |  |---Data Type, U:Unsigned, I:Signed, F:Float
+    |---Prefix
+
+Core Data Struct:
+    Point2D
+    Point3D
+    Pixel
+    Size
+    Rect
+    Vect
+    Mat
+    Image
+    Complex
+    
+Point2
+    x,y
+    +,-,=
+    dot product
+    cross product
+   
+Point3
+    x,y,z
+    +,-,=
+    dot product
+    cross product
+    
+Size
+    width,height
+    +,-
+    
+Rect
+    x,y,width,height
+    
+Vect
+
+
+
+Mat
+    rows,cols,channels,depth,data
+    +,-,t
+    release
+    
+Image
+   
+IO:
+    imageLoad
+
+ColorSpace:
+
+Filter:
+
+Geometry Transform:
+    mirror
+    scale
+    rotate
+    move
+    clip
+    
+Histogram:
+    
+    
