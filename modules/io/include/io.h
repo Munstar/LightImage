@@ -8,16 +8,15 @@
 #include "../../core/include/types.h"
 #include "../../core/include/matrix.hpp"
 
-namespace li
-{
+namespace li {
 #pragma pack(2)
     typedef struct _BITMAPFILEHEADER {
-        LI_U8  Type[2];
+        LI_U8 Type[2];
         LI_U32 FileSize;
         LI_U16 Reserved1;
         LI_U16 Reserved2;
         LI_U32 Offset;
-    }BitMapFileHeader;
+    } BitMapFileHeader;
 #pragma pack()
 
 #pragma pack(2)
@@ -37,10 +36,10 @@ namespace li
         LI_U32 GreenMask;
         LI_U32 BlueMask;
         LI_U32 AlphaMask;
-    }BitMapInfoHeader;
+    } BitMapInfoHeader;
 #pragma pack()
 
-    Matrix_<LI_U8> imload(const char* fname);
+    Matrix_<LI_U8> imload(const char *fname);
 }
 
 

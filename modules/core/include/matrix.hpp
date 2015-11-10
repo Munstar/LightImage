@@ -22,7 +22,7 @@ namespace li {
 
         Matrix_(int _width, int _height, int _channels, _Tp value);
 
-        Matrix_(int _width, int _height, int _channels, _Tp* _data);
+        Matrix_(int _width, int _height, int _channels, _Tp *_data);
 
         Matrix_(const Matrix_ &_m);
 
@@ -43,7 +43,7 @@ namespace li {
         int height;
         int channels;
 
-        int* refcnt;
+        int *refcnt;
 
         _Tp *data;
     };
@@ -52,30 +52,28 @@ namespace li {
     Matrix_<_Tp>::Matrix_() : width(0), height(0), channels(0), refcnt(NULL), data(NULL) { }
 
     template<typename _Tp>
-    Matrix_<_Tp>::Matrix_(int _width, int _height, int _channels) : width(_width), height(_height), channels(_channels)
-    {
+    Matrix_<_Tp>::Matrix_(int _width, int _height, int _channels) : width(_width), height(_height),
+                                                                    channels(_channels) {
         int cnt = _width * _height * _channels;
         data = new _Tp[cnt];
         refcnt = new int(1);
     }
 
     template<typename _Tp>
-    Matrix_<_Tp>::Matrix_(int _width, int _height, int _channels, _Tp _value) : width(_width), height(_height), channels(_channels)
-    {
+    Matrix_<_Tp>::Matrix_(int _width, int _height, int _channels, _Tp _value) : width(_width), height(_height),
+                                                                                channels(_channels) {
         int cnt = _width * _height * _channels;
         data = new _Tp[cnt];
 
-        for(int i = 0; i < cnt; i++)
-        {
+        for (int i = 0; i < cnt; i++) {
             data[i] = _value;
         }
 
         refcnt = new int(1);
     }
 
-    template <typename _Tp>
-    Matrix_<_Tp>::Matrix_(int _width, int _height, int _channels, _Tp* _data)
-    {
+    template<typename _Tp>
+    Matrix_<_Tp>::Matrix_(int _width, int _height, int _channels, _Tp *_data) {
         width = _width;
         height = _height;
         channels = _channels;
@@ -83,29 +81,24 @@ namespace li {
         data = _data;
     }
 
-    template <typename _Tp>
-    Matrix_<_Tp>::~Matrix_()
-    {
+    template<typename _Tp>
+    Matrix_<_Tp>::~Matrix_() {
         release();
     }
 
-    template <typename _Tp>
-    void Matrix_<_Tp>::release()
-    {
-        if(data)
-        {
+    template<typename _Tp>
+    void Matrix_<_Tp>::release() {
+        if (data) {
             (*refcnt)--;
-            if((*refcnt) == 0)
-            {
+            if ((*refcnt) == 0) {
                 delete[] data;
                 delete refcnt;
             }
         }
     }
 
-    template <typename _Tp>
-    Matrix_<_Tp>::Matrix_(const li::Matrix_<_Tp> &_m)
-    {
+    template<typename _Tp>
+    Matrix_<_Tp>::Matrix_(const li::Matrix_<_Tp> &_m) {
         width = _m.width;
         height = _m.height;
         channels = _m.height;
@@ -117,9 +110,8 @@ namespace li {
 
     }
 
-    template <typename  _Tp>
-    Matrix_<_Tp>& Matrix_<_Tp>::operator=(const Matrix_<_Tp> &_m)
-    {
+    template<typename _Tp>
+    Matrix_<_Tp> &Matrix_<_Tp>::operator=(const Matrix_<_Tp> &_m) {
         release();
 
         width = _m.width;
@@ -132,82 +124,66 @@ namespace li {
         return *this;
     }
 
-    template <typename _Tp>
-    Matrix_<_Tp> Matrix_<_Tp>::operator+(const li::Matrix_<_Tp> &_m)
-    {
-        if(width == _m.width && height == _m.height && channels == _m.channels)
-        {
+    template<typename _Tp>
+    Matrix_<_Tp> Matrix_<_Tp>::operator+(const li::Matrix_<_Tp> &_m) {
+        if (width == _m.width && height == _m.height && channels == _m.channels) {
             int cnt = width * height * channels;
-            _Tp* _data = new _Tp[cnt];
+            _Tp *_data = new _Tp[cnt];
 
-            for (int i = 0; i < cnt; ++i)
-            {
+            for (int i = 0; i < cnt; ++i) {
                 _data[i] = data[i] + _m.data[i];
             }
 
             return Matrix_<_Tp>(width, height, channels, _data);
-        }else
-        {
+        } else {
             ERR("The type of the matrixes must be same.");
         }
     }
 
-    template <typename _Tp>
-    Matrix_<_Tp> Matrix_<_Tp>::operator-(const li::Matrix_<_Tp> &_m)
-    {
-        if(width == _m.width && height == _m.height && channels == _m.channels)
-        {
+    template<typename _Tp>
+    Matrix_<_Tp> Matrix_<_Tp>::operator-(const li::Matrix_<_Tp> &_m) {
+        if (width == _m.width && height == _m.height && channels == _m.channels) {
             int cnt = width * height * channels;
-            _Tp* _data = new _Tp[cnt];
+            _Tp *_data = new _Tp[cnt];
 
-            for (int i = 0; i < cnt; ++i)
-            {
+            for (int i = 0; i < cnt; ++i) {
                 _data[i] = data[i] - _m.data[i];
             }
 
             return Matrix_<_Tp>(width, height, channels, _data);
-        }else
-        {
+        } else {
             ERR("The type of the matrixes must be same.");
         }
     }
 
-    template <typename _Tp>
-    Matrix_<_Tp> Matrix_<_Tp>::operator*(const li::Matrix_<_Tp> &_m)
-    {
-        if(width == _m.width && height == _m.height && channels == _m.channels)
-        {
+    template<typename _Tp>
+    Matrix_<_Tp> Matrix_<_Tp>::operator*(const li::Matrix_<_Tp> &_m) {
+        if (width == _m.width && height == _m.height && channels == _m.channels) {
             int cnt = width * height * channels;
-            _Tp* _data = new _Tp[cnt];
+            _Tp *_data = new _Tp[cnt];
 
-            for (int i = 0; i < cnt; ++i)
-            {
+            for (int i = 0; i < cnt; ++i) {
                 _data[i] = data[i] * _m.data[i];
             }
 
             return Matrix_<_Tp>(width, height, channels, _data);
-        }else
-        {
+        } else {
             ERR("The type of the matrixes must be same.");
         }
     }
 
-    template <typename _Tp>
-    Matrix_<_Tp> Matrix_<_Tp>::operator*(_Tp _s)
-    {
-        if(width > 0 && height > 0 && channels > 0)
-        {
+    template<typename _Tp>
+    Matrix_<_Tp> Matrix_<_Tp>::operator*(_Tp _s) {
+        if (width > 0 && height > 0 && channels > 0) {
             int cnt = width * height * channels;
-            _Tp* _data = new _Tp[cnt];
+            _Tp *_data = new _Tp[cnt];
 
-            for (int i = 0; i < cnt; ++i)
-            {
+            for (int i = 0; i < cnt; ++i) {
                 _data[i] = data[i] * _s;
             }
 
             return Matrix_<_Tp>(width, height, channels, _data);
-        }else
-        {
+        } else {
             ERR("The type of the matrixes must be same.");
         }
     }
