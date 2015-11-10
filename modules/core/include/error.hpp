@@ -16,6 +16,7 @@ namespace li
     inline void error(const char* file, long line, const char* info)
     {
         std::cerr<<file<<"\t"<<line<<":"<<info <<std::endl;
+        exit(-1);
     }
 }
 

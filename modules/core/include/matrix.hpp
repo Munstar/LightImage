@@ -86,7 +86,7 @@ namespace li {
     template <typename _Tp>
     Matrix_<_Tp>::~Matrix_()
     {
-
+        release();
     }
 
     template <typename _Tp>
@@ -94,8 +94,8 @@ namespace li {
     {
         if(data)
         {
-            *refcnt --;
-            if(*refcnt <= 1)
+            (*refcnt)--;
+            if((*refcnt) = 0)
             {
                 delete[] data;
                 delete refcnt;
@@ -110,12 +110,11 @@ namespace li {
         height = _m.height;
         channels = _m.height;
 
-        int cnt = width * height * channels;
+        data = _m.data;
+        refcnt = _m.refcnt;
+        (*refcnt)++;
 
-        for(int i = 0; i < cnt; i++)
-        {
-            data[i] = _m.data[i];
-        }
+
     }
 
     template <typename  _Tp>
