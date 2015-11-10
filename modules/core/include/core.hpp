@@ -7,8 +7,8 @@
 
 #include "point.hpp"
 #include "types.h"
-#include "matrix.h"
-#
+#include "matrix.hpp"
+#include "error.hpp"
 
 namespace li
 {
