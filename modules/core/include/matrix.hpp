@@ -95,7 +95,7 @@ namespace li {
         if(data)
         {
             (*refcnt)--;
-            if((*refcnt) = 0)
+            if((*refcnt) == 0)
             {
                 delete[] data;
                 delete refcnt;

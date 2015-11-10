@@ -27,7 +27,7 @@ int main(int argc, char** argv)
 {
     QApplication app(argc, argv);
 
-    char fname[] = "/home/xin/Pictures/lena_grayscale.bmp";
+    char fname[] = "/home/xin/Pictures/bmptest2.bmp";
     Matrix_<LI_U8> img;
     img = imload(fname);
 
