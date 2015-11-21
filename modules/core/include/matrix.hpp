@@ -48,6 +48,35 @@ namespace li {
         _Tp *data;
     };
 
+
+    template<typename _Tp, int m, int n>
+    class MiniMat {
+    public:
+
+        MiniMat();
+
+        MiniMat(_Tp _v0, _Tp _v1, _Tp _v2);
+
+        MiniMat(_Tp _v0, _Tp _v1, _Tp _v2, _Tp _v3, _Tp _v4, _Tp _v5, _Tp _v6, _Tp _v7, _Tp _v8);
+
+        const _Tp &operator()(int i, int j) const;
+
+        const _Tp &operator()(int i) const;
+
+        void operator=(MiniMat &_m) const;
+
+        const _Tp det() const;
+
+        const MiniMat inv() const;
+
+        template<typename _Tp2, int m1, int m2>
+        const MiniMat operator*(MiniMat<_Tp2, m1, m2> &_m) const;
+
+        _Tp data[m * n];
+        const int rows = m;
+        const int clos = n;
+    };
+
     template<typename _Tp>
     Matrix_<_Tp>::Matrix_() : width(0), height(0), channels(0), refcnt(NULL), data(NULL) { }
 
@@ -106,8 +135,6 @@ namespace li {
         data = _m.data;
         refcnt = _m.refcnt;
         (*refcnt)++;
-
-
     }
 
     template<typename _Tp>
@@ -185,6 +212,96 @@ namespace li {
             return Matrix_<_Tp>(width, height, channels, _data);
         } else {
             ERR("The type of the matrixes must be same.");
+        }
+    }
+
+    template<typename _Tp, int m, int n>
+    inline
+    const _Tp &MiniMat<_Tp, m, n>::operator()(int i, int j) const {
+        return data[i * n + j];
+    }
+
+    template<typename _Tp, int m, int n>
+    MiniMat<_Tp, m, n>::MiniMat() {
+        for (int i = 0; i < m * n; ++i) {
+            data[i] = _Tp(0);
+        }
+    }
+
+    template<typename _Tp, int m, int n>
+    MiniMat<_Tp, m, n>::MiniMat(_Tp _v0, _Tp _v1, _Tp _v2) {
+        data[0] = _v0;
+        data[1] = _v1;
+        data[2] = _v2;
+    }
+
+    template<typename _Tp, int m, int n>
+    MiniMat<_Tp, m, n>::MiniMat(_Tp _v0, _Tp _v1, _Tp _v2, _Tp _v3, _Tp _v4, _Tp _v5, _Tp _v6, _Tp _v7, _Tp _v8) {
+        data[0] = _v0;
+        data[1] = _v1;
+        data[2] = _v2;
+        data[3] = _v3;
+        data[4] = _v4;
+        data[5] = _v5;
+        data[6] = _v6;
+        data[7] = _v7;
+        data[8] = _v8;
+    }
+
+    template<typename _Tp, int m, int n>
+    const _Tp MiniMat<_Tp, m, n>::det() const {
+        if (m == n && m == 3) {
+            _Tp temp = data[0 * n + 0] * (data[1 * n + 1] * data[2 * n + 2] - data[2 * n + 1] * data[1 * n + 2]) -
+                       data[0 * n + 1] * (data[1 * n + 0] * data[2 * n + 2] - data[2 * n + 0] * data[1 * n + 2]) +
+                       data[0 * n + 2] * (data[1 * n + 0] * data[2 * n + 1] - data[2 * n + 0] * data[1 * n + 1]);
+            return _Tp(temp);
+        } else {
+            return _Tp(0);
+        }
+    }
+
+    template<typename _Tp, int m, int n>
+    const MiniMat<_Tp, m, n> MiniMat<_Tp, m, n>::inv() const {
+
+        double d = data[0 * n + 0] * (data[1 * n + 1] * data[2 * n + 2] - data[2 * n + 1] * data[1 * n + 2]) -
+                   data[0 * n + 1] * (data[1 * n + 0] * data[2 * n + 2] - data[2 * n + 0] * data[1 * n + 2]) +
+                   data[0 * n + 2] * (data[1 * n + 0] * data[2 * n + 1] - data[2 * n + 0] * data[1 * n + 1]);
+
+        d = 1.0 / d;
+        double _v0 = (data[1 * n + 1] * data[2 * n + 2] - data[1 * n + 2] * data[2 * n + 1]) * d;
+        double _v1 = (data[0 * n + 2] * data[2 * n + 1] - data[0 * n + 1] * data[2 * n + 2]) * d;
+        double _v2 = (data[0 * n + 1] * data[1 * n + 2] - data[0 * n + 2] * data[1 * n + 1]) * d;
+
+        double _v3 = (data[1 * n + 2] * data[2 * n + 0] - data[1 * n + 0] * data[2 * n + 2]) * d;
+        double _v4 = (data[0 * n + 0] * data[2 * n + 2] - data[0 * n + 2] * data[2 * n + 0]) * d;
+        double _v5 = (data[0 * n + 2] * data[1 * n + 0] - data[0 * n + 0] * data[1 * n + 2]) * d;
+
+        double _v6 = (data[1 * n + 0] * data[2 * n + 1] - data[1 * n + 1] * data[2 * n + 0]) * d;
+        double _v7 = (data[0 * n + 1] * data[2 * n + 0] - data[0 * n + 0] * data[2 * n + 1]) * d;
+        double _v8 = (data[0 * n + 0] * data[1 * n + 1] - data[0 * n + 1] * data[1 * n + 0]) * d;
+
+        return MiniMat<_Tp, m, n>(_v0, _v1, _v2, _v3, _v4, _v5, _v6, _v7, _v8);
+    }
+
+    template<typename _Tp1, int m, int n>
+    template<typename _Tp2, int m1, int m2>
+    const MiniMat<_Tp1, m, n> MiniMat<_Tp1, m, n>::operator*(MiniMat<_Tp2, m1, m2> &_m) const {
+        double _v0 = data[0 * m1 + 0] * _m(0, 0) + data[0 * m1 + 1] * _m(1, 0) + data[0 * m1 + 2] * _m(2, 0);
+        double _v1 = data[0 * m1 + 0] * _m(0, 1) + data[0 * m1 + 1] * _m(1, 1) + data[0 * m1 + 2] * _m(2, 1);
+        double _v2 = data[0 * m1 + 0] * _m(0, 2) + data[0 * m1 + 1] * _m(1, 2) + data[0 * m1 + 2] * _m(2, 2);
+
+        return MiniMat<_Tp1, m, n>(_v0, _v1, _v2);
+    }
+
+    template<typename _Tp, int m, int n>
+    const _Tp &MiniMat<_Tp, m, n>::operator()(int i) const {
+        return data[i];
+    }
+
+    template<typename _Tp, int m, int n>
+    void MiniMat<_Tp, m, n>::operator=(MiniMat<_Tp, m, n> &_m) const {
+        for (int i = 0; i < m * n; ++i) {
+            data[i] = _m.data[i];
         }
     }
 }

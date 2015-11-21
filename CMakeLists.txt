@@ -9,10 +9,30 @@ find_package(Qt5Widgets REQUIRED)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
+include_directories(include)
+
+set(uis app/res/mainwindow.ui
+        app/res/mirrordialog.ui
+        app/res/rotatedialog.ui
+        app/res/scaledialog.ui)
+
+QT5_WRAP_UI(ui_srcs ${uis})
+
 set(link_libs Qt5::Core Qt5::Widgets)
 
-set(SOURCE_FILES    main.cpp
-                    modules/core/include/types.h
+set(qt_source       app/include/mainwindow.h
+                    app/src/mainwindow.cpp
+                    app/src/main.cpp
+                    app/include/util.hpp
+                    app/include/mirrordialog.h
+                    app/src/mirrordialog.cpp
+                    app/include/rotatedialog.h
+                    app/src/rotatedialog.cpp
+                    app/include/scaledialog.h
+                    app/src/scaledialog.cpp
+)
+
+set(core_source     modules/core/include/types.h
                     modules/core/include/core.hpp
                     modules/core/include/point.hpp
                     modules/core/include/matrix.hpp
@@ -20,6 +40,12 @@ set(SOURCE_FILES    main.cpp
                     modules/core/include/error.hpp
                     modules/io/include/io.h
                     modules/io/src/io.cpp
+                    modules/core/include/image.h
+                    modules/core/src/image.cpp
+                    modules/histogram/include/histogram.h
+                    modules/histogram/src/histogram.cpp
+                    modules/geometry_transform/include/geometry.h
+                    modules/geometry_transform/src/geometry.cpp
  )
-add_executable(LightImage ${SOURCE_FILES})
+add_executable(LightImage ${qt_source} ${ui_srcs} ${core_source})
 target_link_libraries(LightImage ${link_libs})

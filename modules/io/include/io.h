@@ -6,7 +6,7 @@
 #define LIGHTIMAGE_IO_H
 
 #include "../../core/include/types.h"
-#include "../../core/include/matrix.hpp"
+#include "../../core/include/core.hpp"
 
 namespace li {
 #pragma pack(2)
@@ -39,7 +39,7 @@ namespace li {
     } BitMapInfoHeader;
 #pragma pack()
 
-    Matrix_<LI_U8> imload(const char *fname);
+    Image imload(const char *fname);
 }
 
 
