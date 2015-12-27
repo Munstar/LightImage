@@ -5,6 +5,7 @@
 #ifndef LIGHTIMAGE_IO_H
 #define LIGHTIMAGE_IO_H
 
+#include <QtCore/qstring.h>
 #include "../../core/include/types.h"
 #include "../../core/include/core.hpp"
 
@@ -32,14 +33,12 @@ namespace li {
         LI_U32 VResolution;
         LI_U32 ColorCount;
         LI_U32 ColorImportant;
-        LI_U32 RedMask;
-        LI_U32 GreenMask;
-        LI_U32 BlueMask;
-        LI_U32 AlphaMask;
     } BitMapInfoHeader;
 #pragma pack()
 
     Image imload(const char *fname);
+
+    bool imsave(Image &_im, const char *fname);
 }
 
 

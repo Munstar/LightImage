@@ -5,6 +5,8 @@
 #ifndef LIGHTIMAGE_CORE_HPP
 #define LIGHTIMAGE_CORE_HPP
 
+#define lipi 3.14159265358979323846
+
 #include <cstdio>
 
 #include "point.hpp"
@@ -20,6 +22,7 @@ namespace li {
     typedef Point2_<li::LI_F32> Point2D32F;
     typedef MiniMat<double, 3, 3> TransMat;
     typedef MiniMat<double, 3, 1> TransVec;
+    typedef MiniMat<double, 3, 3> Filter_kernel;
 
 
     template<typename _Tp>
@@ -38,7 +41,7 @@ namespace li {
     template<typename _Tp, int m, int n>
     void print_mat(MiniMat<_Tp, m, n> _m) {
         for (int i = 0; i < _m.rows; ++i) {
-            for (int j = 0; j < _m.clos; ++j) {
+            for (int j = 0; j < _m.cols; ++j) {
                 printf("%lf", (double) _m(i, j));
                 printf(" ");
             }

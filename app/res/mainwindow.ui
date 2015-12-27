@@ -56,13 +56,20 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="labelHist">
+          <widget class="QLabel" name="labelHistOri">
            <property name="maximumSize">
             <size>
              <width>256</width>
              <height>16777215</height>
             </size>
            </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="labelHistEdit">
            <property name="text">
             <string/>
            </property>

@@ -6,6 +6,8 @@
 #define LIGHTIMAGE_MATRIX_HPP
 
 #include "error.hpp"
+#include <vector>
+#include <algorithm>
 
 namespace li {
 
@@ -25,6 +27,8 @@ namespace li {
         Matrix_(int _width, int _height, int _channels, _Tp *_data);
 
         Matrix_(const Matrix_ &_m);
+
+        const _Tp &operator()(int i, int j) const;
 
         Matrix_ &operator=(const Matrix_ &_m);
 
@@ -74,7 +78,7 @@ namespace li {
 
         _Tp data[m * n];
         const int rows = m;
-        const int clos = n;
+        const int cols = n;
     };
 
     template<typename _Tp>
@@ -215,6 +219,11 @@ namespace li {
         }
     }
 
+    template<typename _Tp>
+    const _Tp &Matrix_<_Tp>::operator()(int i, int j) const {
+        return data[i * width + j];
+    }
+
     template<typename _Tp, int m, int n>
     inline
     const _Tp &MiniMat<_Tp, m, n>::operator()(int i, int j) const {
@@ -304,5 +313,6 @@ namespace li {
             data[i] = _m.data[i];
         }
     }
+
 }
 #endif //LIGHTIMAGE_MATRIX_HPP

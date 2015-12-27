@@ -38,7 +38,7 @@ void ScaleDialog::setWidthAb(int _w) {
         width = _w;
         double fc = (double) _w / (double) oriWidth;
         height = (int) (oriHeight * fc);
-        ui->spinBoxHeightAb->setValue(height);
+        //ui->spinBoxHeightAb->setValue(height);
     }
     else {
         width = _w;
@@ -50,7 +50,7 @@ void ScaleDialog::setHeightAb(int _h) {
         height = _h;
         double fc = (double) _h / (double) oriHeight;
         width = (int) (oriWidth * fc);
-        ui->spinBoxWidthAb->setValue(width);
+        //ui->spinBoxWidthAb->setValue(width);
     }
     else {
         width = _h;

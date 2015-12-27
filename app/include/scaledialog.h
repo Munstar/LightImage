@@ -15,7 +15,7 @@ class ScaleDialog : public QDialog {
 Q_OBJECT
 
 public:
-    ScaleDialog(QWidget *parent, int _w, int _h);
+    explicit ScaleDialog(QWidget *parent, int _w, int _h);
 
     ~ScaleDialog();
 

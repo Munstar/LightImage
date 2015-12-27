@@ -42,7 +42,7 @@ namespace li {
         }
 
 
-        int cnt_per_pix = max / _height;
+        int cnt_per_pix = (max / _height) + 1;
 
         for (int i = 0; i < _height; ++i) {
             for (int j = 0; j < _width; ++j) {
@@ -58,5 +58,39 @@ namespace li {
         }
 
         return Image(_width, _height, channles, dat);
+    }
+
+    Image histogram_balance(Image &_im) {
+        Histogram h(_im);
+
+        for (int i = 1; i < 256; ++i) {
+            for (int j = 0; j < h.channles; ++j) {
+                h.data[j * 256 + i] = h.data[j * 256 + i] + h.data[j * 256 + i - 1];
+            }
+        }
+
+        int pix_per_level = (_im.width * _im.height) / 256;
+
+        LI_U8 *map = new LI_U8[h.channles * 256];
+
+        for (int i = 0; i < 256; ++i) {
+            for (int j = 0; j < h.channles; ++j) {
+                map[j * 256 + i] = h.data[j * 256 + i] / pix_per_level;
+            }
+        }
+
+        LI_U8 *dat = new LI_U8[_im.width * _im.height * _im.channels];
+        for (int i = 0; i < _im.height; ++i) {
+            for (int j = 0; j < _im.width; ++j) {
+                for (int k = 0; k < _im.channels; ++k) {
+                    dat[(i * _im.width + j) * _im.channels + k] = map[k * 256 +
+                                                                      _im.data[(i * _im.width + j) * _im.channels + k]];
+                }
+            }
+        }
+
+        delete[](map);
+
+        return Image(_im.width, _im.height, _im.channels, dat);
     }
 }

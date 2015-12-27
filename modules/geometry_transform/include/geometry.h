@@ -10,7 +10,9 @@
 namespace li {
     Image mirror(Image &_im, bool h, bool v);
 
-    Image scale(Image &_im, int _width, int _height);
+    Image scale_nearest(Image &_im, int _width, int _height);
+
+    Image scale_linear(Image &_im, int _width, int _height);
 
     Image rotate(Image &_im, double _angle);
 

@@ -46,6 +46,14 @@ set(core_source     modules/core/include/types.h
                     modules/histogram/src/histogram.cpp
                     modules/geometry_transform/include/geometry.h
                     modules/geometry_transform/src/geometry.cpp
+                    modules/frequency_domain_transform/include/dft.h
+                    modules/frequency_domain_transform/src/dft.cpp
+                    modules/frequency_domain_transform/include/dct.h
+                    modules/frequency_domain_transform/src/dct.cpp
+                    modules/color/include/color.h
+                    modules/color/src/color.cpp
+                    modules/filter/include/filter.h
+                    modules/filter/src/filter.cpp
  )
 add_executable(LightImage ${qt_source} ${ui_srcs} ${core_source})
 target_link_libraries(LightImage ${link_libs})

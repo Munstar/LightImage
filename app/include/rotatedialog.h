@@ -15,7 +15,7 @@ class RotateDialog : public QDialog {
 Q_OBJECT
 
 public:
-    RotateDialog(QWidget *parent);
+    explicit RotateDialog(QWidget *parent);
 
     ~RotateDialog();
 

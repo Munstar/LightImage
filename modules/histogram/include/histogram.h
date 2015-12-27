@@ -24,5 +24,7 @@ namespace li {
 
     };
 
+    Image histogram_balance(Image &_im);
+
 }
 #endif //LIGHTIMAGE_HISTOGRAM_H
