@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/19/15.
-//
-
 #ifndef LIGHTIMAGE_GEOMETRY_H
 #define LIGHTIMAGE_GEOMETRY_H
 

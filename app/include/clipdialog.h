@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/29/15.
-//
-
 #ifndef LIGHTIMAGE_CLIPDIALOG_H
 #define LIGHTIMAGE_CLIPDIALOG_H
 

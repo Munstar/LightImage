@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/29/15.
-//
-
 #include "../include/movedialog.h"
 #include "ui_movedialog.h"
 

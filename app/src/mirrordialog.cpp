@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/20/15.
-//
-
 #include "../include/mirrordialog.h"
 #include "ui_mirrordialog.h"
 

@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/17/15.
-//
-
 #ifndef LIGHTIMAGE_MAINWINDOW_H
 #define LIGHTIMAGE_MAINWINDOW_H
 

@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/19/15.
-//
-
 #include "../include/dct.h"
 #include "../include/dft.h"
 

@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/17/15.
-//
-
 #include "../include/histogram.h"
 #include "LightImage.h"
 

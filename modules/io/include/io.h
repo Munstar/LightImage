@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/10/15.
-//
-
 #ifndef LIGHTIMAGE_IO_H
 #define LIGHTIMAGE_IO_H
 

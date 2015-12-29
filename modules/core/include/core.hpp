@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/4/15.
-//
-
 #ifndef LIGHTIMAGE_CORE_HPP
 #define LIGHTIMAGE_CORE_HPP
 

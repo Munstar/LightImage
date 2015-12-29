@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/24/15.
-//
-
 #include "../include/filter.h"
 #include <cstdlib>
 #include <ctime>

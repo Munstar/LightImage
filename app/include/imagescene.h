@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/28/15.
-//
-
 #ifndef LIGHTIMAGE_IMAGESCENE_H
 #define LIGHTIMAGE_IMAGESCENE_H
 

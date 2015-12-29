@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/10/15.
-//
-
 #include "../include/io.h"
 #include "../../core/include/error.hpp"
 

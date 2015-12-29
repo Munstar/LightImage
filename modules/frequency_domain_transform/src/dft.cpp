@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/19/15.
-//
-
 #include "../include/dft.h"
 #include <complex>
 #include <cmath>

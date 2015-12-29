@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/20/15.
-//
-
 #ifndef LIGHTIMAGE_MIRRORDIALOG_H
 #define LIGHTIMAGE_MIRRORDIALOG_H
 

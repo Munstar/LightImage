@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/19/15.
-//
-
 #include "../include/geometry.h"
 #include <cmath>
 

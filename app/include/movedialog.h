@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/29/15.
-//
-
 #ifndef LIGHTIMAGE_MOVEDIALOG_H
 #define LIGHTIMAGE_MOVEDIALOG_H
 

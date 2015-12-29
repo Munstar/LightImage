@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/21/15.
-//
-
 #include "../include/scaledialog.h"
 #include "ui_scaledialog.h"
 

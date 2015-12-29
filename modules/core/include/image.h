@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/10/15.
-//
-
 #ifndef LIGHTIMAGE_IMAGE_H
 #define LIGHTIMAGE_IMAGE_H
 

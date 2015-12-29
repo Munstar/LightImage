@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/21/15.
-//
-
 #ifndef LIGHTIMAGE_SCALEDIALOG_H
 #define LIGHTIMAGE_SCALEDIALOG_H
 

@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/4/15.
-//
-
 #ifndef LIGHTIMAGE_TYPES_H
 #define LIGHTIMAGE_TYPES_H
 

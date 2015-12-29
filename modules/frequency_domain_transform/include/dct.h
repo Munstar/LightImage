@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/19/15.
-//
-
 #ifndef LIGHTIMAGE_DCT_H
 #define LIGHTIMAGE_DCT_H
 

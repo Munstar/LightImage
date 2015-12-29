@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/21/15.
-//
-
 #include "../include/color.h"
 
 namespace li {

@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/19/15.
-//
-
 #ifndef LIGHTIMAGE_DFT_H
 #define LIGHTIMAGE_DFT_H
 

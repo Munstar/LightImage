@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/8/15.
-//
-
 #ifndef LIGHTIMAGE_ERROR_HPP
 #define LIGHTIMAGE_ERROR_HPP
 

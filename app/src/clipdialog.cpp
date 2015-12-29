@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/29/15.
-//
-
 #include "../include/clipdialog.h"
 #include "ui_clipdialog.h"
 

@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/24/15.
-//
-
 #ifndef LIGHTIMAGE_FILTER_H
 #define LIGHTIMAGE_FILTER_H
 

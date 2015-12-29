@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/4/15.
-//
-
 #ifndef LIGHTIMAGE_POINT_H
 #define LIGHTIMAGE_POINT_H
 

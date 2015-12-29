@@ -1,9 +1,4 @@
-//
-// Created by xin on 12/28/15.
-//
-
 #include "../include/imagescene.h"
-#include <iostream>
 #include <QGraphicsSceneMouseEvent>
 
 ImageScene::ImageScene(QObject *parent) : QGraphicsScene(parent) {

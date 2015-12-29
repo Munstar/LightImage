@@ -1,7 +1,3 @@
-//
-// Created by xin on 11/4/15.
-//
-
 #ifndef LIGHTIMAGE_MATRIX_HPP
 #define LIGHTIMAGE_MATRIX_HPP
 

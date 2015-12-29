@@ -1,7 +1,3 @@
-//
-// Created by xin on 12/21/15.
-//
-
 #ifndef LIGHTIMAGE_COLOR_H
 #define LIGHTIMAGE_COLOR_H
 
