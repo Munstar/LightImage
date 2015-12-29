@@ -14,9 +14,14 @@ include_directories(include)
 set(uis app/res/mainwindow.ui
         app/res/mirrordialog.ui
         app/res/rotatedialog.ui
-        app/res/scaledialog.ui)
+        app/res/scaledialog.ui
+        app/res/clipdialog.ui
+        app/res/movedialog.ui)
+
+set(rcs app/res/lightimage.qrc)
 
 QT5_WRAP_UI(ui_srcs ${uis})
+QT5_ADD_RESOURCES(rc_srcs ${rcs})
 
 set(link_libs Qt5::Core Qt5::Widgets)
 
@@ -30,6 +35,12 @@ set(qt_source       app/include/mainwindow.h
                     app/src/rotatedialog.cpp
                     app/include/scaledialog.h
                     app/src/scaledialog.cpp
+                    app/include/imagescene.h
+                    app/src/imagescene.cpp
+                    app/include/clipdialog.h
+                    app/src/clipdialog.cpp
+                    app/include/movedialog.h
+                    app/src/movedialog.cpp
 )
 
 set(core_source     modules/core/include/types.h
@@ -55,5 +66,5 @@ set(core_source     modules/core/include/types.h
                     modules/filter/include/filter.h
                     modules/filter/src/filter.cpp
  )
-add_executable(LightImage ${qt_source} ${ui_srcs} ${core_source})
+add_executable(LightImage ${qt_source} ${ui_srcs} ${core_source} ${rc_srcs})
 target_link_libraries(LightImage ${link_libs})

@@ -1,0 +1,23 @@
+<RCC>
+  <qresource prefix="/icon">
+    <file>icon/sharp.png</file>
+    <file>icon/smooth.png</file>
+    <file>icon/hist_equ.png</file>
+    <file>icon/BH.png</file>
+    <file>icon/BL.png</file>
+    <file>icon/M.png</file>
+    <file>icon/view-refresh.png</file>
+    <file>icon/view-restore.png</file>
+    <file>icon/noise.png</file>
+    <file>icon/mirror.png</file>
+    <file>icon/go-previous.png</file>
+    <file>icon/edit-find.png</file>
+    <file>icon/DFT.png</file>
+    <file>icon/DCT.png</file>
+    <file>icon/applications-graphics.png</file>
+    <file>icon/applications-accessories.png</file>
+    <file>icon/zoom-fit-best.png</file>
+    <file>icon/document-open.png</file>
+    <file>icon/document-save.png</file>
+  </qresource>
+</RCC>

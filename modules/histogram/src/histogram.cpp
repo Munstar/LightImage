@@ -3,6 +3,7 @@
 //
 
 #include "../include/histogram.h"
+#include "LightImage.h"
 
 
 namespace li {
@@ -60,7 +61,41 @@ namespace li {
         return Image(_width, _height, channles, dat);
     }
 
-    Image histogram_balance(Image &_im) {
+    double hist_simi(Image &_im1, Image &_im2) {
+        Image temp1 = rgb2gray(_im1);
+        Image temp2 = rgb2gray(_im2);
+
+        Histogram h1(_im1);
+        Histogram h2(_im2);
+
+        int max1 = 0;
+        int max2 = 0;
+
+        double p1[255] = {0.0};
+        double p2[255] = {0.0};
+
+        for (int i = 1; i < 255; ++i) {
+            if (h1.data[i] > max1)
+                max1 = h1.data[i];
+            if (h2.data[i] > max2)
+                max2 = h2.data[i];
+        }
+
+        for (int j = 1; j < 255; ++j) {
+            p1[j] = (double) h1.data[j] / (double) max1;
+            p2[j] = (double) h2.data[j] / (double) max2;
+        }
+
+        double res = 0.0;
+
+        for (int k = 1; k < 255; ++k) {
+            res += abs(p1[k] - p2[k]);
+        }
+
+        return 1.0 / res;
+    }
+
+    Image histogram_eq(Image &_im) {
         Histogram h(_im);
 
         for (int i = 1; i < 256; ++i) {

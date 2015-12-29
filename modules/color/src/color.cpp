@@ -15,7 +15,7 @@ namespace li {
                 for (int k = 0; k < _im.channels; ++k) {
                     temp += ptr_ori[(i * _im.width + j) * _im.channels + k];
                 }
-                dat[i * _im.width + j] = temp / 3;
+                dat[i * _im.width + j] = temp / _im.channels;
             }
         }
 

@@ -114,7 +114,7 @@ namespace li {
 */
 
     Matrix_<complex<float>> dft(Image &_im) {
-        unsigned int newHeightAndWidth = _im.width > _im.height ? _im.width : _im.height;
+        int newHeightAndWidth = _im.width > _im.height ? _im.width : _im.height;
 
         if (newHeightAndWidth & (newHeightAndWidth - 1)) {
             double p = ceil(log((double) newHeightAndWidth) / log(2.));
@@ -135,7 +135,7 @@ namespace li {
 
         for (int i = 0; i < newHeightAndWidth; ++i) {
             for (int j = 0; j < newHeightAndWidth; ++j) {
-                cdat[i * newHeightAndWidth + j] = complex<float>(mean, 0.0);
+                cdat[i * newHeightAndWidth + j] = complex<float>((float) mean, 0.0);
             }
         }
 
@@ -150,7 +150,7 @@ namespace li {
             for (int j = 0; j < newHeightAndWidth; ++j) {
                 row[j] = cdat[i * newHeightAndWidth + j];
                 if ((i + j) % 2)
-                    row[j] = complex<float>(-1.0, 0) * row[j];
+                    row[j] = complex<float>((float) -1.0, 0) * row[j];
             }
             fft(row, newHeightAndWidth, false);
             for (int k = 0; k < newHeightAndWidth; ++k) {
@@ -380,9 +380,9 @@ namespace li {
 
             const double Sine = sin(delta * 0.5);
 
-            const complex<float> Multiplier(-2. * Sine * Sine, sin(delta));
+            const complex<float> Multiplier((float) (-2.0 * Sine * Sine), sin(delta));
 
-            complex<float> Factor(1., 0.);
+            complex<float> Factor(1.0, 0.0);
 
             for (unsigned int Group = 0; Group < Step; ++Group) {
                 for (unsigned int Pair = Group; Pair < N; Pair += Jump) {

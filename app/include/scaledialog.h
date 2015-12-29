@@ -15,11 +15,18 @@ class ScaleDialog : public QDialog {
 Q_OBJECT
 
 public:
+    typedef struct _ScalePara {
+        int width;
+        int height;
+        int type;
+    } ScalePara;
+
+public:
     explicit ScaleDialog(QWidget *parent, int _w, int _h);
 
     ~ScaleDialog();
 
-    static long getScalePara(QWidget *parent, int _w, int _h);
+    static ScalePara getScalePara(QWidget *parent, int _w, int _h);
 
 private slots:
 
@@ -36,6 +43,7 @@ private:
     int oriHeight;
     int width;
     int height;
+    int type;
     bool fixRate;
 
 };

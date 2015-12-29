@@ -57,21 +57,29 @@ void ScaleDialog::setHeightAb(int _h) {
     }
 }
 
-long ScaleDialog::getScalePara(QWidget *parent, int _w, int _h) {
+ScaleDialog::ScalePara ScaleDialog::getScalePara(QWidget *parent, int _w, int _h) {
     ScaleDialog dialog(parent, _w, _h);
-    long res;
+    ScalePara res;
 
     if (dialog.exec() == QDialog::Accepted) {
-        res = dialog.width;
-        res <<= 32;
-        res += dialog.height;
+        res.width = dialog.width;
+        res.height = dialog.height;
+        if (dialog.ui->radioButton_nearest->isChecked())
+            dialog.type = 1;
+        else
+            dialog.type = 0;
+        res.type = dialog.type;
 
         return res;
     }
 
-    res = _w;
-    res <<= 32;
-    res += _h;
+    res.width = _w;
+    res.width = _h;
+    if (dialog.ui->radioButton_nearest->isChecked())
+        dialog.type = 1;
+    else
+        dialog.type = 0;
+    res.type = dialog.type;
 
     return res;
 }

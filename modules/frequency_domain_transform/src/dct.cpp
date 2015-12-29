@@ -106,21 +106,21 @@ namespace li {
         complex<float> shift = complex<float>(1.0, 0);
         for (int i = 0; i < 2 * N; ++i) {
             cData[i] = cData[i] * shift;
-            shift = shift * complex<float>(co, si);
+            shift = shift * complex<float>((float) co, (float) si);
         }
 
         for (int i = 0; i < N; ++i) {
-            dat[i] = cData[i].real() / sqrt(2.0 * N);
+            dat[i] = (float) (cData[i].real() / sqrt(2.0 * N));
         }
 
         delete[](cData);
 
-        dat[0] = dat[0] / sqrt(2.0);
+        dat[0] = (float) (dat[0] / sqrt(2.0));
     }
 
 
     Matrix_<float> dct(Image &_im) {
-        unsigned int newHeightAndWidth = _im.width > _im.height ? _im.width : _im.height;
+        int newHeightAndWidth = _im.width > _im.height ? _im.width : _im.height;
 
         if (newHeightAndWidth & (newHeightAndWidth - 1)) {
             double p = ceil(log((double) newHeightAndWidth) / log(2.));
@@ -141,7 +141,7 @@ namespace li {
 
         for (int i = 0; i < newHeightAndWidth; ++i) {
             for (int j = 0; j < newHeightAndWidth; ++j) {
-                cdat[i * newHeightAndWidth + j] = mean;
+                cdat[i * newHeightAndWidth + j] = (float) mean;
             }
         }
 
@@ -184,16 +184,16 @@ namespace li {
 
     void ifdct(float *dat, int n) {
         int N = n;
-        dat[0] = dat[0] * sqrt(2.0);
+        dat[0] = (float) (dat[0] * sqrt(2.0));
 
         complex<float> *cData = new complex<float>[2 * N];
 
         for (int i = 0; i < N; ++i) {
-            dat[i] = dat[i] * sqrt(2.0 * N);
+            dat[i] = (float) (dat[i] * sqrt(2.0 * N));
         }
 
         for (int i = 1; i < N; ++i) {
-            cData[i] = complex<float>(dat[i], 0.);
+            cData[i] = complex<float>(dat[i], 0.0);
             cData[2 * N - i] = -complex<float>(dat[i], 0);
         }
         cData[0] = complex<float>(dat[0], 0);
@@ -201,16 +201,16 @@ namespace li {
         double eks = 2 * lipi * (N - 0.5) / (2 * N);
         double co = cos(eks);
         double si = sin(eks);
-        complex<float> shift = complex<float>(1., 0.);
+        complex<float> shift = complex<float>(1.0, 0.0);
 
         for (int i = 0; i < 2 * N; ++i) {
             cData[i] = cData[i] * shift;
-            shift = shift * complex<float>(co, si);
+            shift = shift * complex<float>((float) co, (float) si);
         }
 
         fft(cData, 2 * N, true);
 
-        complex<float> Factor = complex<float>(1.0 / (2.0 * N), 0.0);
+        complex<float> Factor = complex<float>((float) (1.0 / (2.0 * N)), 0.0);
 
         for (unsigned int Pos = 0; Pos < (unsigned int) (2 * N); Pos++) {
             cData[Pos] = cData[Pos] * Factor;

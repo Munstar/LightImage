@@ -169,29 +169,41 @@ namespace li {
                    _v6, _v7, _v8);
         TransMat TI = T.inv();
 
+        _angle = (_angle - floor(_angle / 360.0) * 360);
 
-        LI_U8 *dat = new LI_U8[_im.width * _im.height * _im.channels];
+        int new_height = _im.height;
+        int new_width = _im.width;
+
+        if ((_angle >= 0.0 && _angle <= 90.0) || (_angle >= 180.0 && _angle <= 270.0)) {
+            new_width = (int) abs(_im.width * cos(_angle / 180 * M_PI) + _im.height * sin(_angle / 180 * M_PI));
+            new_height = (int) abs(_im.width * sin(_angle / 180 * M_PI) + _im.height * cos(_angle / 180 * M_PI));
+        } else {
+            new_width = (int) abs(-_im.width * cos(_angle / 180 * M_PI) + _im.height * sin(_angle / 180 * M_PI));
+            new_height = (int) abs(_im.width * sin(_angle / 180 * M_PI) - _im.height * cos(_angle / 180 * M_PI));
+        }
+
+        LI_U8 *dat = new LI_U8[new_width * new_height * _im.channels];
         LI_U8 *ptr_dat = dat;
 
-        for (int i = 0; i < _im.height; ++i) {
-            for (int j = 0; j < _im.width; ++j) {
-                TransVec VT((double) (j - _im.width / 2), (double) (i - _im.height / 2), 1.0);
+        for (int i = 0; i < new_height; ++i) {
+            for (int j = 0; j < new_width; ++j) {
+                TransVec VT((double) (j - new_width / 2), (double) (i - new_height / 2), 1.0);
                 TransVec VO = VT * TI;
                 int u = (int) (VO(0) - 0.50) + _im.width / 2;
                 int v = (int) (VO(1) - 0.50) + _im.height / 2;
                 for (int k = 0; k < _im.channels; ++k) {
                     if (u >= _im.width || v >= _im.height || u < 0 || v < 0) {
-                        ptr_dat[(i * _im.width + j) * _im.channels + k] = 255;
+                        ptr_dat[(i * new_width + j) * _im.channels + k] = 255;
                     }
                     else {
-                        ptr_dat[(i * _im.width + j) * _im.channels + k] = _im.data[(v * _im.width + u) * _im.channels +
+                        ptr_dat[(i * new_width + j) * _im.channels + k] = _im.data[(v * _im.width + u) * _im.channels +
                                                                                    k];
                     }
                 }
             }
         }
 
-        return Image(_im.width, _im.height, _im.channels, dat);
+        return Image(new_width, new_height, _im.channels, dat);
     }
 
     Image clip(Image &_im, int x1, int y1, int x2, int y2) {

@@ -40,6 +40,8 @@ namespace li {
 
         Matrix_ operator*(_Tp _s);
 
+        Matrix_ copyto();
+
         //Matrix_ T(const Matrix_ &_m);
 
     public:
@@ -134,7 +136,7 @@ namespace li {
     Matrix_<_Tp>::Matrix_(const li::Matrix_<_Tp> &_m) {
         width = _m.width;
         height = _m.height;
-        channels = _m.height;
+        channels = _m.channels;
 
         data = _m.data;
         refcnt = _m.refcnt;
@@ -153,6 +155,21 @@ namespace li {
         data = _m.data;
 
         return *this;
+    }
+
+    template<typename _Tp>
+    Matrix_<_Tp> Matrix_<_Tp>::copyto() {
+        LI_U8 *dat = new LI_U8[width * height * channels];
+
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width; ++j) {
+                for (int k = 0; k < channels; ++k) {
+                    dat[(i * width + j) * channels + k] = data[(i * width + j) * channels + k];
+                }
+            }
+        }
+
+        return Matrix_<_Tp>(width, height, channels, dat);
     }
 
     template<typename _Tp>

@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1019</width>
+    <height>746</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>LightImage</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -37,8 +37,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>102</width>
-          <height>491</height>
+          <width>132</width>
+          <height>637</height>
          </rect>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -100,7 +100,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1019</width>
      <height>27</height>
     </rect>
    </property>
@@ -109,6 +109,11 @@
      <string>File</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="separator"/>
+    <addaction name="actionSearch"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdit_to_Origin"/>
    </widget>
    <widget class="QMenu" name="menuGeometry">
     <property name="title">
@@ -119,9 +124,35 @@
     <addaction name="actionClip"/>
     <addaction name="actionMirror"/>
     <addaction name="actionRotate"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_noise"/>
+    <addaction name="actionRGB_to_Gray"/>
+    <addaction name="separator"/>
+    <addaction name="actionHistogram_Equ"/>
+   </widget>
+   <widget class="QMenu" name="menuFrequency">
+    <property name="title">
+     <string>Frequency</string>
+    </property>
+    <addaction name="actionDCT"/>
+    <addaction name="actionFFT"/>
+   </widget>
+   <widget class="QMenu" name="menuFilter">
+    <property name="title">
+     <string>Filter</string>
+    </property>
+    <addaction name="actionSmooth"/>
+    <addaction name="actionSharp"/>
+    <addaction name="separator"/>
+    <addaction name="actionButterworth_LP"/>
+    <addaction name="actionButterworth_HP"/>
+    <addaction name="separator"/>
+    <addaction name="actionMedian"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuGeometry"/>
+   <addaction name="menuFrequency"/>
+   <addaction name="menuFilter"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -135,42 +166,201 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSearch"/>
+   <addaction name="actionEdit_to_Origin"/>
+   <addaction name="separator"/>
+   <addaction name="actionMove"/>
+   <addaction name="actionRotate"/>
+   <addaction name="actionScale"/>
+   <addaction name="actionMirror"/>
+   <addaction name="actionClip"/>
+   <addaction name="actionHistogram_Equ"/>
+   <addaction name="actionRGB_to_Gray"/>
+   <addaction name="actionAdd_noise"/>
+   <addaction name="separator"/>
+   <addaction name="actionDCT"/>
+   <addaction name="actionFFT"/>
+   <addaction name="actionButterworth_LP"/>
+   <addaction name="actionButterworth_HP"/>
+   <addaction name="actionMedian"/>
+   <addaction name="actionSmooth"/>
+   <addaction name="actionSharp"/>
   </widget>
   <action name="actionOpen">
    <property name="icon">
-    <iconset>
-     <normaloff>icon/document-open.png</normaloff>icon/document-open.png</iconset>
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/document-open.png</normaloff>:/icon/icon/document-open.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
    </property>
   </action>
   <action name="actionScale">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/zoom-fit-best.png</normaloff>:/icon/icon/zoom-fit-best.png</iconset>
+   </property>
    <property name="text">
     <string>Scale</string>
    </property>
   </action>
   <action name="actionMove">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/view-restore.png</normaloff>:/icon/icon/view-restore.png</iconset>
+   </property>
    <property name="text">
     <string>Move</string>
    </property>
   </action>
   <action name="actionClip">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/applications-accessories.png</normaloff>:/icon/icon/applications-accessories.png</iconset>
+   </property>
    <property name="text">
     <string>Clip</string>
    </property>
   </action>
   <action name="actionMirror">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/mirror.png</normaloff>:/icon/icon/mirror.png</iconset>
+   </property>
    <property name="text">
     <string>Mirror</string>
    </property>
   </action>
   <action name="actionRotate">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/view-refresh.png</normaloff>:/icon/icon/view-refresh.png</iconset>
+   </property>
    <property name="text">
     <string>Rotate</string>
    </property>
   </action>
+  <action name="actionAdd_noise">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/noise.png</normaloff>:/icon/icon/noise.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add noise</string>
+   </property>
+  </action>
+  <action name="actionRGB_to_Gray">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/applications-graphics.png</normaloff>:/icon/icon/applications-graphics.png</iconset>
+   </property>
+   <property name="text">
+    <string>RGB to Gray</string>
+   </property>
+  </action>
+  <action name="actionDCT">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/DCT.png</normaloff>:/icon/icon/DCT.png</iconset>
+   </property>
+   <property name="text">
+    <string>DCT</string>
+   </property>
+  </action>
+  <action name="actionFFT">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/DFT.png</normaloff>:/icon/icon/DFT.png</iconset>
+   </property>
+   <property name="text">
+    <string>FFT</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/document-save.png</normaloff>:/icon/icon/document-save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSmooth">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/smooth.png</normaloff>:/icon/icon/smooth.png</iconset>
+   </property>
+   <property name="text">
+    <string>Smooth</string>
+   </property>
+  </action>
+  <action name="actionSharp">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/sharp.png</normaloff>:/icon/icon/sharp.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sharp</string>
+   </property>
+  </action>
+  <action name="actionButterworth_LP">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/BL.png</normaloff>:/icon/icon/BL.png</iconset>
+   </property>
+   <property name="text">
+    <string>Butterworth LP</string>
+   </property>
+  </action>
+  <action name="actionButterworth_HP">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/BH.png</normaloff>:/icon/icon/BH.png</iconset>
+   </property>
+   <property name="text">
+    <string>Butterworth HP</string>
+   </property>
+  </action>
+  <action name="actionMedian">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/M.png</normaloff>:/icon/icon/M.png</iconset>
+   </property>
+   <property name="text">
+    <string>Median</string>
+   </property>
+  </action>
+  <action name="actionSearch">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/edit-find.png</normaloff>:/icon/icon/edit-find.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+  </action>
+  <action name="actionEdit_to_Origin">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/go-previous.png</normaloff>:/icon/icon/go-previous.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edit to Origin</string>
+   </property>
+  </action>
+  <action name="actionHistogram_Equ">
+   <property name="icon">
+    <iconset resource="lightimage.qrc">
+     <normaloff>:/icon/icon/hist_equ.png</normaloff>:/icon/icon/hist_equ.png</iconset>
+   </property>
+   <property name="text">
+    <string>Histogram Equalization</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="lightimage.qrc"/>
+ </resources>
  <connections/>
 </ui>

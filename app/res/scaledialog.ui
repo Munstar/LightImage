@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>257</width>
-    <height>166</height>
+    <height>196</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Scale Parameter</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
@@ -55,6 +55,27 @@
       <string>Fix rate</string>
      </property>
     </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QRadioButton" name="radioButton_nearest">
+       <property name="text">
+        <string>Nearest</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="radioButton_dlinear">
+       <property name="text">
+        <string>Double linear</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">

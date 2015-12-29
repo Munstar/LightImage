@@ -45,8 +45,12 @@ namespace li {
                         int c = kernel[k * 3 + l];
                     }
                 }
-                std::sort(kernel.begin(), kernel.end());
-                dat[i * _im.width + j] = kernel[4];
+                if (0 == _im.data[i * _im.width + j] || 255 == _im.data[i * _im.width + j]) {
+                    std::sort(kernel.begin(), kernel.end());
+                    dat[i * _im.width + j] = kernel[4];
+                } else {
+                    dat[i * _im.width + j] = _im.data[i * _im.width + j];
+                }
                 kernel.clear();
             }
         }
