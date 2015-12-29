@@ -65,6 +65,7 @@ set(core_source     modules/core/include/types.h
                     modules/color/src/color.cpp
                     modules/filter/include/filter.h
                     modules/filter/src/filter.cpp
+                    include/LightImage.h
  )
 add_executable(LightImage ${qt_source} ${ui_srcs} ${core_source} ${rc_srcs})
 target_link_libraries(LightImage ${link_libs})
