@@ -26,7 +26,7 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_actionOpen_triggered() {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "/home/xin/Pictures", tr("Images (*.bmp)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open File"), "/home", tr("Images (*.bmp)"));
     if (filename.isEmpty())
         return;
     std::cout << filename.toStdString() << std::endl;
